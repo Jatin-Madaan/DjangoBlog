@@ -18,6 +18,7 @@ def login(request):
         count = User.objects.filter(email=email, password=password).count()
         if count > 0 :
             request.session['is_logged'] = True
+            request.session['user_id'] = User.objects.values('id').filter(email=email, password=password)[0]['id']
             return redirect('home')
         else:
             messages.error(request, 'Invalid email or password')
@@ -53,3 +54,18 @@ def home(request):
 def logout(request):
     del request.session['is_logged']
     return redirect('login')
+
+def create_post(request):
+    if request.POST:
+        good_name = request.POST['good_name']
+        description = request.POST['description']
+        title = request.POST['title']
+        image = request.POST['image']
+        user_id = request.session['user_id']
+
+        obj = Blog(good_name=good_name, description=description, title=title, image=image)
+        obj.user_id_id = user_id
+        obj.save()
+        messages.success(request, 'Your Post has been added')
+        return redirect('home')
+    return render(request, 'studentbook/create_post.html')

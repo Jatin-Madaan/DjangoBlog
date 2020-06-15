@@ -69,3 +69,10 @@ def create_post(request):
         messages.success(request, 'Your Post has been added')
         return redirect('home')
     return render(request, 'studentbook/create_post.html')
+
+def readmore(request, id):
+    data = Blog.objects.get(id=id)
+    context = {
+        'data' : data
+    }
+    return render(request, 'studentbook/readmore.html', context)

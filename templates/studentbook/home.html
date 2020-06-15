@@ -24,7 +24,7 @@
 
                             {{half_content}} ..
                         </p>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                        <a href="{% url 'readmore' var.id %}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on {{var.posted_date}} by

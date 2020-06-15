@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.sessions.models import Session
-from .models import User
+from .models import *
 
 
 # Create your views here.
@@ -43,7 +43,11 @@ def register_user(request):
 
 def home(request):
     if request.session.has_key('is_logged'):
-        return render(request, 'studentbook/home.html')
+        data = Blog.objects.all()
+        context = {
+            'data' : data
+        }
+        return render(request, 'studentbook/home.html', context)
     return redirect('login')
 
 def logout(request):

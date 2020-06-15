@@ -4,5 +4,6 @@ from . import models
 # Register your models here.
 admin.site.register([
     models.User,
-    models.Blog
+    models.Blog,
+    models.Comment
 ])

@@ -71,8 +71,21 @@ def create_post(request):
     return render(request, 'studentbook/create_post.html')
 
 def readmore(request, id):
+    if request.POST:
+        message = request.POST['message']
+        user_id = request.POST['user_id']
+        post_id = id
+
+        query = Comment(message=message)
+        query.post_id_id = post_id
+        query.user_id_id = user_id
+
+        query.save()
+        
     data = Blog.objects.get(id=id)
+    comment = Comment.objects.all().filter(post_id=id)
     context = {
-        'data' : data
+        'data' : data,
+        'comments' : comment
     }
     return render(request, 'studentbook/readmore.html', context)

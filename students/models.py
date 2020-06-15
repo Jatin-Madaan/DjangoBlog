@@ -20,3 +20,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    message = models.TextField('Message')
+    date_comment = models.DateField(default=date.today)
+    user_id = models.ForeignKey(User, models.CASCADE)
+    post_id = models.ForeignKey(Blog, models.CASCADE)

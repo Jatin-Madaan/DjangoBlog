@@ -17,7 +17,13 @@
                     <img class="card-img-top img-responsive" src="{{var.image.url}}" alt="Card image cap">
                     <div class="card-body">
                         <h2 class="card-title">{{var.title}}</h2>
-                        <p class="card-text">{{var.description}}</p>
+                        <p class="card-text">
+                            {% load custom_tags %}
+
+                            {% get_half_content var.description as half_content %}
+
+                            {{half_content}} ..
+                        </p>
                         <a href="#" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">

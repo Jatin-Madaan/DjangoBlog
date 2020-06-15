@@ -3,6 +3,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def index(request):
+def login(request):
     context = {}
-    return HttpResponse('<h1> Hello World </h1>')
+    return render(request, 'studentbook/login.html', context)
+
+
+def signup(request):
+    context = {}
+    return render(request, 'studentbook/signup.html',context)
